@@ -1,9 +1,3 @@
-var video = document.getElementById("player1");
-var vol = document.getElementById("volume");
-var slider = document.getElementById("slider");
-const maxVolume = 100;
-const minVolume = 0;
-
 window.addEventListener("load", function() {
 	console.log("Good job opening the window")
 	video = document.querySelector('#player1')
@@ -15,12 +9,13 @@ window.addEventListener("load", function() {
 
 document.querySelector("#play").addEventListener("click", function() {
 	console.log("Play Video");
+	vol = document.getElementById("volume");
 	video = document.getElementById("player1");
+	slider = document.getElementById("slider");
 	video.defaultPlaybackRate = 1.0;
     video.play();
-	slider.value = maxVolume;
-	vol.innerHTML = maxVolume;
-	video.volume = maxVolume * 0.01;
+	vol.innerHTML = slider.value + '%';
+	video.volume = slider.value * 0.01;
 });
 
 document.querySelector("#pause").addEventListener("click", function() {
@@ -55,14 +50,34 @@ document.querySelector("#skip").addEventListener("click", function() {
 
 document.querySelector("#mute").addEventListener("click", function() {
 	console.log("Mute");
-	video.volume = minVolume * 0.01;
-	vol.innerHTML = minVolume;
-	slider.value = minVolume;
+	video = document.getElementById("player1");
+	vol = document.getElementById("volume");
+	slider = document.getElementById("slider");
+	video.volume = 0;
+	vol.innerHTML = '0%';
+	slider.value = 0;
 });
 
 document.querySelector("#slider").addEventListener("input", function() {
 	console.log("Change Volume");
+	video = document.getElementById("player1");
+	vol = document.getElementById("volume");
+	slider = document.getElementById("slider");
 	video.volume = slider.value * 0.01;
-	vol.innerHTML = slider.value;
+	vol.innerHTML = slider.value + '%';
 	console.log("Current volume is: " + video.volume);
+});
+
+document.querySelector("#vintage").addEventListener("click", function() {
+	console.log("Vintage Style");
+	video = document.getElementById("player1");
+	video.className = "oldSchool"
+	console.log("Current video style is: " + video.className);
+});
+
+document.querySelector("#orig").addEventListener("click", function() {
+	console.log("Original Style");
+	video = document.getElementById("player1");
+	video.className = "video"
+	console.log("Current video style is: " + video.className);
 });
