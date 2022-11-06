@@ -51,11 +51,16 @@ document.querySelector("#skip").addEventListener("click", function() {
 document.querySelector("#mute").addEventListener("click", function() {
 	console.log("Mute");
 	video = document.getElementById("player1");
-	vol = document.getElementById("volume");
-	slider = document.getElementById("slider");
-	video.volume = 0;
-	vol.innerHTML = '0%';
-	slider.value = 0;
+	button = document.querySelector("#mute");
+	if (button.innerHTML == 'Mute') {
+		video.muted = true;
+		button.innerHTML = 'Unmute';
+	}
+	else {
+		video.muted = false;
+		button.innerHTML = 'Mute';
+	}	
+	console.log("Video muted = " + video.muted);
 });
 
 document.querySelector("#slider").addEventListener("input", function() {
